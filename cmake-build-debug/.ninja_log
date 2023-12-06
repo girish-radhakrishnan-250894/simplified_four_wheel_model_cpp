@@ -1,8 +1,6 @@
 # ninja log v5
-4181	5126	1699307556722227567	simplified_four_wheel_model	1c5ac979116523b5
+13307	14128	1699308362978496856	simplified_four_wheel_model	1c5ac979116523b5
 9	1889	1699147603504625598	CMakeFiles/simplified_four_wheel_model.dir/inputs.cpp.o	f7f26c19d5c0ae5
-21	10754	1699307091810726505	CMakeFiles/simplified_four_wheel_model.dir/main.cpp.o	632d656078c59555
+23	13306	1699308362158492996	CMakeFiles/simplified_four_wheel_model.dir/main.cpp.o	632d656078c59555
 6	19710	1699293135567964010	CMakeFiles/simplified_four_wheel_model.dir/vehicle_model_fw_simplified.cpp.o	db60d5f6c4163134
 30	3992	1699307588030422334	CMakeFiles/simplified_four_wheel_model.dir/vehicle_simulator.cpp.o	e37c419084dff4bd
-23	13306	1699308362158492996	CMakeFiles/simplified_four_wheel_model.dir/main.cpp.o	632d656078c59555
-13307	14128	1699308362978496856	simplified_four_wheel_model	1c5ac979116523b5
