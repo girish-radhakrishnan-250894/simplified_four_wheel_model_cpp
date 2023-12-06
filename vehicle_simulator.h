@@ -21,7 +21,7 @@ public:
 
     explicit vehicle_simulator(vehicle_model_fw_simplified &_vehicle_model);
 
-    virtual Eigen::VectorXd simulate(const double &t, Eigen::VectorXd &q);
+/*    virtual Eigen::VectorXd simulate(const double &t, Eigen::VectorXd &q);*/
 
     void operator() ( const state_type &x , state_type &dxdt , const double t  );
 

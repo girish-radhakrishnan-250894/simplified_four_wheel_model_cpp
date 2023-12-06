@@ -73,12 +73,6 @@ int main() {
         cout<<"\n error"<<endl;
     }
 
-//    fout << ;
-//    fout.precision(2);
-
-//    fout << "%Time(s)" << "," << "X-Position (X[2])" << "," << "Y-Position (Y[2])" << "," << "Input U" << "\n";
-
-
     size_t steps = integrate((*simulate_vehicle) ,
                              x , 0.0 , 5.0 , 0.01,
                              push_back_state_and_time(x_vec, times));

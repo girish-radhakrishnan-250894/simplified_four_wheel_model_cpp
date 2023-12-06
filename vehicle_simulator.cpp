@@ -7,10 +7,12 @@
 
 vehicle_simulator::vehicle_simulator(vehicle_model_fw_simplified &_vehicle_model) : vehicle_model(_vehicle_model) {}
 
-Eigen::VectorXd vehicle_simulator::simulate(const double &t, Eigen::VectorXd &q)
+// The ::simulate function cannot be used while using boost::odeint libraries. Therefore, this code is commented out.
+// The code that exists inside this function is replicated inside the overloaded operator () as needed by boost
+/*Eigen::VectorXd vehicle_simulator::simulate(const double &t, Eigen::VectorXd &q)
 {
 
-    /*
+    *//*
      * %vehicle_simulator Simulator function that runs vehicle simulations
         %   This is a wrapping function that is called by the numerical integrator.
         %   It knows the current time-step and using it, it interpolates all the
@@ -28,7 +30,7 @@ Eigen::VectorXd vehicle_simulator::simulate(const double &t, Eigen::VectorXd &q)
         % keeping in mind future operations that this function will be used for
         % EXAMPLE - This function may need to output controller states or estimator/observer states. The O_simulator will do that
         % EXAMPLE - The vehicle model may need to output complex variables like slip angle, slip ratio etc. The O_model will do that
-     */
+     *//*
 
 
     // Interpolating the steering input
@@ -49,7 +51,7 @@ Eigen::VectorXd vehicle_simulator::simulate(const double &t, Eigen::VectorXd &q)
     Eigen::VectorXd Qdot = vehicle_model.solve(q,delta_c, m_d_c);
 
     return Qdot;
-}
+}*/
 
 void vehicle_simulator::operator() ( const state_type &x , state_type &dxdt , const double  t  )
 {
