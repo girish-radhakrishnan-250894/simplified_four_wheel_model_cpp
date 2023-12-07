@@ -2,9 +2,6 @@
 .idea/vcs.xml
 *.log
 
-/cmake-build-release/*
-/cmake-build-debug/*
+cmake-build-release/**
+cmake-build-debug/**
 
-cmake-build-release/.ninja_deps
-cmake-build-release/.ninja_log
-*.log
