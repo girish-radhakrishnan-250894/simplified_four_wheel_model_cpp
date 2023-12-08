@@ -58,7 +58,7 @@ void vehicle_simulator::operator() ( const state_type &x , state_type &dxdt , co
     // Interpolating the steering input
     double delta_c{0};
 
-    if (t > 4)
+    if (t > 1.5)
     {
         delta_c = 0.05;
     }
