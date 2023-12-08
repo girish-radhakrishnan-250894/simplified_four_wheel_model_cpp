@@ -30,7 +30,11 @@ target_link_libraries(simplified_four_wheel_model_executable PUBLIC simplified_f
 
 target_include_directories(simplified_four_wheel_model PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
-
+########################################################################################################################
+########################################################################################################################
+# CMAKE CODE TO INCLUDE SCIPLOT FOR PLOTTING #
+########################################################################################################################
+########################################################################################################################
 include(FetchContent) # If not included already
 
 FetchContent_Declare(sciplot_content
