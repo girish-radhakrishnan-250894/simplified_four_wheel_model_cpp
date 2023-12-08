@@ -30,3 +30,17 @@ target_link_libraries(simplified_four_wheel_model_executable PUBLIC simplified_f
 
 target_include_directories(simplified_four_wheel_model PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
+
+include(FetchContent) # If not included already
+
+FetchContent_Declare(sciplot_content
+        GIT_REPOSITORY https://github.com/sciplot/sciplot.git
+        GIT_TAG master)
+
+FetchContent_GetProperties(sciplot_content)
+if(NOT sciplot_content_POPULATED)
+    FetchContent_Populate(sciplot_content)
+endif()
+
+include_directories(${sciplot_content_SOURCE_DIR})
+
