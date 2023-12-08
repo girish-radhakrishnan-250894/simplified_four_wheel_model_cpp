@@ -89,6 +89,9 @@ int main() {
 
     std::cout << x[14] << "\n" << endl;
 
+    //////////////////////////////////////////////////////////////
+    // SCI PLOT SAMPLE
+    //////////////////////////////////////////////////////////////
     // Create a vector with values from 0 to pi divived into 200 uniform intervals for the x-axis
     Vec xs = linspace(0.0, PI, 200);
 
