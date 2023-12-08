@@ -7,6 +7,8 @@
 #include <fstream>
 #include <boost/numeric/odeint.hpp>
 
+#include <sciplot/sciplot.hpp>
+using namespace sciplot;
 
 
 
@@ -86,6 +88,42 @@ int main() {
     }
 
     std::cout << x[14] << "\n" << endl;
+
+    // Create a vector with values from 0 to pi divived into 200 uniform intervals for the x-axis
+    Vec xs = linspace(0.0, PI, 200);
+
+    // Create a Plot object
+    Plot2D plot;
+
+    // Set the x and y labels
+    plot.xlabel("x");
+    plot.ylabel("y");
+
+    // Set the x and y ranges
+    plot.xrange(0.0, PI);
+    plot.yrange(0.0, 1.0);
+
+    // Set the legend to be on the bottom along the horizontal
+    plot.legend()
+            .atOutsideBottom()
+            .displayHorizontal()
+            .displayExpandWidthBy(2);
+
+    // Plot sin(i*x) from i = 1 to i = 6
+    plot.drawCurve(xs, std::sin(1.0 * xs)).label("sin(x)");
+    plot.drawCurve(xs, std::sin(2.0 * xs)).label("sin(2x)");
+    plot.drawCurve(xs, std::sin(3.0 * xs)).label("sin(3x)");
+    plot.drawCurve(xs, std::sin(4.0 * xs)).label("sin(4x)");
+    plot.drawCurve(xs, std::sin(5.0 * xs)).label("sin(5x)");
+    plot.drawCurve(xs, std::sin(6.0 * xs)).label("sin(6x)");
+
+    // Create figure to hold plot
+    Figure fig = {{plot}};
+    // Create canvas to hold figure
+    Canvas canvas = {{fig}};
+
+    // Show the plot in a pop-up window
+    canvas.show();
 
     std::cout << "Hello, World!" << std::endl;
     return 0;
