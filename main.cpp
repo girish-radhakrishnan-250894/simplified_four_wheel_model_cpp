@@ -80,54 +80,68 @@ int main() {
                              x , 0.0 , 5.0 , 0.01,
                              push_back_state_and_time(x_vec, times));
 
-    for (int i = 0; i < x_vec.size(); ++i) {
-        for (int j = 0; j < x.size(); ++j) {
-            fout << x_vec[i][j] << " , ";
-        }
-        fout <<"\n";
+//    for (int i = 0; i < x_vec.size(); ++i) {
+//        for (int j = 0; j < x.size(); ++j) {
+//            fout << x_vec[i][j] << " , ";
+//        }
+//        fout <<"\n";
+//    }
+
+    //////////////////////////////////////////////////////////////
+    // PLOTTING
+    //////////////////////////////////////////////////////////////
+
+    // Creating time-vector
+    Vec t_vec = std::valarray<double>(times.data(), times.size());
+
+    // Creating valarrays to hold all vehicle states of interest
+    Vec long_speed(x_vec.size());
+    Vec lat_speed(x_vec.size());
+    Vec yaw_rate(x_vec.size());
+    Vec roll_angle(x_vec.size());
+    Vec chassis_heave(x_vec.size());
+
+
+    for (size_t i = 0; i < x_vec.size(); ++i) {
+        long_speed[i] = x_vec[i][14];
+        lat_speed[i] = x_vec[i][15];
+        yaw_rate[i] = x_vec[i][19];
+        roll_angle[i] = x_vec[i][3];
+        chassis_heave[i] = x_vec[i][2];
     }
 
-    std::cout << x[14] << "\n" << endl;
+    Plot2D plt_long_speed;
+    plt_long_speed.legend().atOutsideBottom().displayHorizontal().displayExpandWidthBy(2);
+    plt_long_speed.xlabel("Time [s]");
+    plt_long_speed.ylabel("Speed [kmph]");
+    plt_long_speed.drawCurve(t_vec, long_speed*3.6).label("Vx [kmph]");
 
-    //////////////////////////////////////////////////////////////
-    // SCI PLOT SAMPLE
-    //////////////////////////////////////////////////////////////
-    // Create a vector with values from 0 to pi divived into 200 uniform intervals for the x-axis
-    Vec xs = linspace(0.0, PI, 200);
+    Plot2D plt_lat_speed;
+    plt_lat_speed.legend().atOutsideBottom().displayHorizontal().displayExpandWidthBy(2);
+    plt_lat_speed.xlabel("Time [s]");
+    plt_lat_speed.ylabel("Lateral Speed [m/s]");
+    plt_lat_speed.drawCurve(t_vec, lat_speed).label("Vy [m/s]");
 
-    // Create a Plot object
-    Plot2D plot;
+    Plot2D plt_yaw_rate;
+    plt_yaw_rate.legend().atOutsideBottom().displayHorizontal().displayExpandWidthBy(2);
+    plt_yaw_rate.xlabel("Time [s]");
+    plt_yaw_rate.ylabel("Yaw Rate [deg/s]");
+    plt_yaw_rate.drawCurve(t_vec, yaw_rate*57.4).label("r [deg/s]");
 
-    // Set the x and y labels
-    plot.xlabel("x");
-    plot.ylabel("y");
-
-    // Set the x and y ranges
-    plot.xrange(0.0, PI);
-    plot.yrange(0.0, 1.0);
-
-    // Set the legend to be on the bottom along the horizontal
-    plot.legend()
-            .atOutsideBottom()
-            .displayHorizontal()
-            .displayExpandWidthBy(2);
-
-    // Plot sin(i*x) from i = 1 to i = 6
-    plot.drawCurve(xs, std::sin(1.0 * xs)).label("sin(x)");
-    plot.drawCurve(xs, std::sin(2.0 * xs)).label("sin(2x)");
-    plot.drawCurve(xs, std::sin(3.0 * xs)).label("sin(3x)");
-    plot.drawCurve(xs, std::sin(4.0 * xs)).label("sin(4x)");
-    plot.drawCurve(xs, std::sin(5.0 * xs)).label("sin(5x)");
-    plot.drawCurve(xs, std::sin(6.0 * xs)).label("sin(6x)");
+    Plot2D plt_roll_angle;
+    plt_roll_angle.legend().atOutsideBottom().displayHorizontal().displayExpandWidthBy(2);
+    plt_roll_angle.xlabel("Time [s]");
+    plt_roll_angle.ylabel("Roll Angle [deg]");
+    plt_roll_angle.drawCurve(t_vec, roll_angle*57.4).label("theta [deg]");
 
     // Create figure to hold plot
-    Figure fig = {{plot}};
+    Figure fig = {{plt_long_speed,plt_lat_speed}, {plt_yaw_rate, plt_roll_angle}};
     // Create canvas to hold figure
     Canvas canvas = {{fig}};
+    canvas.size(749,749);
 
     // Show the plot in a pop-up window
     canvas.show();
 
-    std::cout << "Hello, World!" << std::endl;
     return 0;
 }
