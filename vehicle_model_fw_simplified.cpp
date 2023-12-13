@@ -231,10 +231,10 @@ Eigen::VectorXd vehicle_model_fw_simplified::solve(Eigen::VectorXd q, const doub
     Eigen::Vector3d F_kt4_0; F_kt4_0 << 0, 0, in.k_t*Delta_t_4;
 
     // Force - Tire Lateral/Longitudinal
-    Eigen::Vector3d F_cp1__1; F_cp1__1 << in.C_x*kappa_1__1, in.C_y*alpha_1__1, 0;
-    Eigen::Vector3d F_cp2__2; F_cp2__2 << in.C_x*kappa_2__2, in.C_y*alpha_2__2, 0;
-    Eigen::Vector3d F_cp3__3; F_cp3__3 << in.C_x*kappa_3__3, in.C_y*alpha_3__3, 0;
-    Eigen::Vector3d F_cp4__4; F_cp4__4 << in.C_x*kappa_4__4, in.C_y*alpha_4__4, 0;
+    Eigen::Vector3d F_cp1__1; F_cp1__1 << in.C_x*kappa_1__1, in.C_y_1*alpha_1__1, 0;
+    Eigen::Vector3d F_cp2__2; F_cp2__2 << in.C_x*kappa_2__2, in.C_y_1*alpha_2__2, 0;
+    Eigen::Vector3d F_cp3__3; F_cp3__3 << in.C_x*kappa_3__3, in.C_y_2*alpha_3__3, 0;
+    Eigen::Vector3d F_cp4__4; F_cp4__4 << in.C_x*kappa_4__4, in.C_y_2*alpha_4__4, 0;
 
     Eigen::Vector3d F_cp1__0{ (F_cp1__1.transpose()*A_a1o).transpose() };
     Eigen::Vector3d F_cp2__0{ (F_cp2__2.transpose()*A_a20).transpose() };
@@ -357,6 +357,7 @@ Eigen::VectorXd vehicle_model_fw_simplified::solve(Eigen::VectorXd q, const doub
     // Assembling the Output Vector
     outputs_model.push_back(u);
     outputs_model.push_back(v);
+    outputs_model.push_back(r);
 
     return Q_dot;
 

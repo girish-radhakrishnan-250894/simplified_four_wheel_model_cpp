@@ -71,7 +71,9 @@ struct inputs {
     double C_x = 250000;
 
     // Tire Cornering Stiffness
-    double C_y = 100000;
+    double C_y_1 = 206000;
+    double C_y_2 = 160000;
+
 
 };
 
