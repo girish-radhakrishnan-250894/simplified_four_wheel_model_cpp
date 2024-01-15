@@ -101,7 +101,7 @@ int main() {
     Vec roll_angle(x_vec.size());
     Vec chassis_heave(x_vec.size());
 
-
+    // Populating the valarrys
     for (size_t i = 0; i < x_vec.size(); ++i) {
         long_speed[i] = x_vec[i][14];
         lat_speed[i] = x_vec[i][15];
@@ -110,24 +110,28 @@ int main() {
         chassis_heave[i] = x_vec[i][2];
     }
 
+    // Longitudinal Speed Plot
     Plot2D plt_long_speed;
     plt_long_speed.legend().atOutsideBottom().displayHorizontal().displayExpandWidthBy(2);
     plt_long_speed.xlabel("Time [s]");
     plt_long_speed.ylabel("Speed [kmph]");
     plt_long_speed.drawCurve(t_vec, long_speed*3.6).label("Vx [kmph]");
 
+    // Lateral Speed Plot
     Plot2D plt_lat_speed;
     plt_lat_speed.legend().atOutsideBottom().displayHorizontal().displayExpandWidthBy(2);
     plt_lat_speed.xlabel("Time [s]");
     plt_lat_speed.ylabel("Lateral Speed [m/s]");
     plt_lat_speed.drawCurve(t_vec, lat_speed).label("Vy [m/s]");
 
+    // Yaw Rate Plot
     Plot2D plt_yaw_rate;
     plt_yaw_rate.legend().atOutsideBottom().displayHorizontal().displayExpandWidthBy(2);
     plt_yaw_rate.xlabel("Time [s]");
     plt_yaw_rate.ylabel("Yaw Rate [deg/s]");
     plt_yaw_rate.drawCurve(t_vec, yaw_rate*57.4).label("r [deg/s]");
 
+    // Roll Angle Plot
     Plot2D plt_roll_angle;
     plt_roll_angle.legend().atOutsideBottom().displayHorizontal().displayExpandWidthBy(2);
     plt_roll_angle.xlabel("Time [s]");
